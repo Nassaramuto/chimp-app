@@ -1,0 +1,40 @@
+# Exclude OS-specific and user-specific files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Exclude IDE-specific files
+.vscode/
+.idea/
+
+# Exclude log files and databases
+*.log
+*.sqlite
+
+# Exclude Python cache files
+__pycache__/
+*.py[cod]
+
+# Exclude environment variables file
+.env
+
+# Exclude all hidden files and folders
+.*
+!/.gitignore
+
+# Exclude system files
+AppData/
+Application Data/
+Cookies/
+Documents/
+Local Settings/
+NetHood/
+PrintHood/
+Recent/
+SendTo/
+Start Menu/
+Templates/
+
+# Exclude other unnecessary files and folders
+*.tmp
+*.swp
