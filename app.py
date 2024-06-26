@@ -1,10 +1,6 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory, render_template_string
 
-app = Flask(__name__)
-
-@app.route('/')
-def home():
-    return "Welcome to the CHIMP app!"
+app = Flask(__name__, static_url_path='/static')
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
@@ -14,8 +10,8 @@ def webhook():
         text = data['message']['text']
 
         if text == '/start':
-            send_message(chat_id, "Welcome to the CHIMP game! [Play here](https://nassaramuto.github.io/chimp-app)")
-        
+            send_message(chat_id, "Welcome to the CHIMP game! [Play here](https://chimp-app-6f814a960105.herokuapp.com/)")
+
     return jsonify(success=True)
 
 def send_message(chat_id, text):
@@ -23,6 +19,14 @@ def send_message(chat_id, text):
     url = f'https://api.telegram.org/bot7373207583:AAG8PBOs4G0iNDynSFCYvLcSvv0uveFxV34/sendMessage'
     payload = {'chat_id': chat_id, 'text': text, 'parse_mode': 'Markdown'}
     requests.post(url, json=payload)
+
+@app.route('/')
+def index():
+    return render_template_string(open("static/index.html").read())
+
+@app.route('/static/<path:path>')
+def serve_static(path):
+    return send_from_directory('static', path)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
