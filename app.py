@@ -1,7 +1,11 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='', static_folder='static')
+
+@app.route('/')
+def serve_index():
+    return "Welcome to the CHIMP game!"
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
