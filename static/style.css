@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
-    background: url('images/background.png') no-repeat center center fixed;
+    background: url('https://i.postimg.cc/Xq0zrJ5t/Green-Background.png') no-repeat center center fixed;
     background-size: cover;
     color: white;
     display: flex;
@@ -180,3 +180,4 @@ body {
     background-color: #2B302A; /* Updated green color */
     cursor: pointer;
 }
+

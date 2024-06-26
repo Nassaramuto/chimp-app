@@ -41,49 +41,58 @@ document.addEventListener('DOMContentLoaded', () => {
         showQuestContent();
     });
 
+    document.getElementById('tap-btn').addEventListener('click', () => {
+        showTapContent();
+    });
+
     function showRefContent() {
+        coinSection.style.display = 'none';
+        contentSection.style.display = 'flex';
         contentSection.innerHTML = `
             <div class="modal-content">
+                <h2>Referral</h2>
                 <div class="referral-link">
                     <input type="text" value="https://chimp.game/invite" readonly>
-                    <button onclick="copyToClipboard()">Copy</button>
+                    <button onclick="copyLink()"><img src="https://i.postimg.cc/FzVJj9WY/Copy-button.png" alt="Copy" style="width: 40px; height: 40px;"></button>
                 </div>
             </div>
         `;
-        contentSection.style.display = 'flex';
-        coinSection.style.display = 'none';
     }
 
     function showQuestContent() {
+        coinSection.style.display = 'none';
+        contentSection.style.display = 'flex';
         contentSection.innerHTML = `
             <div class="modal-content">
                 <div class="quest-item">
                     <p>Join CHIMP Telegram Chat</p>
-                    <button onclick="window.open('https://t.me/joinchat/XXXX', '_blank')">Go</button>
+                    <button onclick="goToLink('https://t.me/chimpchat')"><img src="https://i.postimg.cc/cLNbxTYT/Go-button.png" alt="Go" style="width: 40px; height: 40px;"></button>
                 </div>
                 <div class="quest-item">
                     <p>Follow CHIMP on X</p>
-                    <button onclick="window.open('https://x.com/chimp', '_blank')">Go</button>
+                    <button onclick="goToLink('https://x.com/chimp')"><img src="https://i.postimg.cc/cLNbxTYT/Go-button.png" alt="Go" style="width: 40px; height: 40px;"></button>
                 </div>
                 <div class="quest-item">
                     <p>Visit CHIMP Website</p>
-                    <button onclick="window.open('https://chimp.game', '_blank')">Go</button>
+                    <button onclick="goToLink('https://chimp.game')"><img src="https://i.postimg.cc/cLNbxTYT/Go-button.png" alt="Go" style="width: 40px; height: 40px;"></button>
                 </div>
             </div>
         `;
-        contentSection.style.display = 'flex';
-        coinSection.style.display = 'none';
     }
 
-    document.getElementById('tap-btn').addEventListener('click', () => {
-        contentSection.style.display = 'none';
+    function showTapContent() {
         coinSection.style.display = 'flex';
-    });
-
-    function copyToClipboard() {
-        const input = document.querySelector('.referral-link input');
-        input.select();
-        document.execCommand('copy');
-        alert('Referral link copied to clipboard!');
+        contentSection.style.display = 'none';
     }
 });
+
+function copyLink() {
+    const copyText = document.querySelector('.referral-link input');
+    copyText.select();
+    document.execCommand('copy');
+    alert('Link copied to clipboard');
+}
+
+function goToLink(url) {
+    window.open(url, '_blank');
+}

@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHIMP Game</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="main-container">
         <div class="header">
             <h1>CHIMP</h1>
             <div class="balance">
-                <img src="images/coin.png" alt="Coin">
+                <img src="https://i.postimg.cc/9M9kXTDG/CHIMP-COIN-PNG.png" alt="Coin">
                 <span id="balance">0</span>
             </div>
         </div>
         <div class="coin-section" id="coin-section">
-            <img src="images/coin.png" alt="Coin" class="main-coin" id="main-coin">
+            <img src="https://i.postimg.cc/9M9kXTDG/CHIMP-COIN-PNG.png" alt="Coin" class="main-coin" id="main-coin">
         </div>
         <div class="content-section" id="content-section">
             <!-- Content for Ref and Quest pages will be inserted here -->
@@ -28,6 +28,7 @@
             <button class="footer-btn" id="quest-btn">Quest</button>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
+
