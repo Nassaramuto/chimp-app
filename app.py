@@ -1,6 +1,10 @@
-from flask import Flask, request, jsonify, send_from_directory, render_template_string
+from flask import Flask, request, jsonify
 
-app = Flask(__name__, static_url_path='/static')
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return 'Welcome to the CHIMP app!'
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
@@ -19,14 +23,6 @@ def send_message(chat_id, text):
     url = f'https://api.telegram.org/bot7373207583:AAG8PBOs4G0iNDynSFCYvLcSvv0uveFxV34/sendMessage'
     payload = {'chat_id': chat_id, 'text': text, 'parse_mode': 'Markdown'}
     requests.post(url, json=payload)
-
-@app.route('/')
-def index():
-    return render_template_string(open("static/index.html").read())
-
-@app.route('/static/<path:path>')
-def serve_static(path):
-    return send_from_directory('static', path)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
