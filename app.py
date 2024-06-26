@@ -1,5 +1,6 @@
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify
 import os
+import requests
 
 app = Flask(__name__, static_url_path='', static_folder='static')
 
@@ -22,8 +23,7 @@ def webhook():
     return jsonify(success=True)
 
 def send_message(chat_id, text):
-    import requests
-    url = f'https://api.telegram.org/bot<YOUR_BOT_TOKEN>/sendMessage'
+    url = f'https://api.telegram.org/bot7373207583:AAG8PBOs4G0iNDynSFCYvLcSvv0uveFxV34/sendMessage'
     payload = {'chat_id': chat_id, 'text': text, 'parse_mode': 'Markdown'}
     requests.post(url, json=payload)
 
