@@ -2,6 +2,10 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
+@app.route('/')
+def home():
+    return "Welcome to the CHIMP game! This is the home page."
+
 @app.route('/webhook', methods=['POST'])
 def webhook():
     data = request.get_json()
@@ -11,6 +15,8 @@ def webhook():
 
         if text == '/start':
             send_message(chat_id, "Welcome to the CHIMP game! [Play here](https://nassaramuto.github.io/chimp-app/)")
+        
+        # Add more commands as needed
 
     return jsonify(success=True)
 
