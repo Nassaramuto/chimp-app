@@ -1,11 +1,6 @@
 from flask import Flask, request, jsonify
-import requests
 
 app = Flask(__name__)
-
-@app.route('/')
-def home():
-    return "Welcome to the CHIMP app!"
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
@@ -15,12 +10,13 @@ def webhook():
         text = data['message']['text']
 
         if text == '/start':
-            send_message(chat_id, "Welcome to the CHIMP game! [Play here](https://chimp-app-6f814a960105.herokuapp.com/)")
+            send_message(chat_id, "Welcome to the CHIMP game! [Play here](https://chimp-app-6f814a960105.herokuapp.com)")
 
     return jsonify(success=True)
 
 def send_message(chat_id, text):
-    url = 'https://api.telegram.org/bot7373207583:AAG8PBOs4G0iNDynSFCYvLcSvv0uveFxV34/sendMessage'
+    import requests
+    url = f'https://api.telegram.org/bot7373207583:AAG8PBOs4G0iNDynSFCYvLcSvv0uveFxV34/sendMessage'
     payload = {'chat_id': chat_id, 'text': text, 'parse_mode': 'Markdown'}
     requests.post(url, json=payload)
 
