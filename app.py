@@ -1,6 +1,10 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
+
+@app.route('/')
+def index():
+    return send_from_directory('static', 'index.html')
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
@@ -10,7 +14,7 @@ def webhook():
         text = data['message']['text']
 
         if text == '/start':
-            send_message(chat_id, "Welcome to the CHIMP game! [Play here](https://chimp-app-6f814a960105.herokuapp.com)")
+            send_message(chat_id, "Welcome to the CHIMP game! [Play here](https://chimp-app-6f814a960105.herokuapp.com/)")
 
     return jsonify(success=True)
 
